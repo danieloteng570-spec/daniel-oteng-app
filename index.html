@@ -7,6 +7,7 @@
 
 <!-- LearnMate App Icon -->
 <link rel="icon" type="image/png" href="learnmate-icon.png">
+<link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="learnmate-icon.png">
 
 <title>LearnMate - Learning App</title>
@@ -1257,7 +1258,14 @@ function restartQuiz(){
 startQuiz(currentSubject);
 
 }
-
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("LearnMate is ready"))
+      .catch(error => console.log("Service worker error:", error));
+  });
+}
 </script>
 
 </body>
