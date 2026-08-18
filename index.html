@@ -1,38 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png"
-href="learnmate-icon.png">
-    
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#07111f">
+
+<!-- LearnMate App Icon -->
+<link rel="icon" type="image/png" href="learnmate-icon.png">
+<link rel="apple-touch-icon" href="learnmate-icon.png">
+
 <title>LearnMate - Learning App</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 body{
 font-family:Arial,sans-serif;
 background:#07111f;
 color:white;
 min-height:100vh;
-padding-bottom:80px
+padding-bottom:90px
 }
+
 header{
 padding:30px 20px;
-background:linear-gradient(135deg,#0b2447,#123b67);
-border-radius:0 0 30px 30px
+background:linear-gradient(135deg,#071a35,#123b67);
+border-radius:0 0 30px 30px;
+border-bottom:1px solid #61dafb55
 }
-.logo{font-size:28px;font-weight:900}
-.logo span{color:#61dafb}
-.welcome{margin-top:28px}
-.welcome h1{font-size:30px;margin-bottom:8px}
-.welcome p{color:#b9c8dc;line-height:1.6}
-.container{max-width:900px;margin:auto;padding:25px 18px}
-.title{margin:15px 0 20px}
-.title h2{font-size:27px}
-.title p{color:#9fb0c7;margin-top:6px}
-.subjects{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+font-size:28px;
+font-weight:900
+}
+
+.logo img{
+width:48px;
+height:48px;
+border-radius:14px;
+object-fit:cover;
+box-shadow:0 0 20px #61dafb66
+}
+
+.logo span{
+color:#61dafb
+}
+
+.welcome{
+margin-top:28px
+}
+
+.welcome h1{
+font-size:30px;
+margin-bottom:8px
+}
+
+.welcome p{
+color:#b9c8dc;
+line-height:1.6
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:25px 18px
+}
+
+.title{
+margin:15px 0 20px
+}
+
+.title h2{
+font-size:27px
+}
+
+.title p{
+color:#9fb0c7;
+margin-top:6px
+}
+
+.subjects{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px
+}
+
 .subject{
 padding:22px;
 border-radius:22px;
@@ -41,16 +96,35 @@ border:1px solid #203957;
 cursor:pointer;
 transition:.3s
 }
+
 .subject:hover{
 transform:translateY(-5px);
 border-color:#61dafb;
-box-shadow:0 0 25px #61dafb33
+box-shadow:0 0 30px #61dafb44
 }
-.icon{font-size:35px;margin-bottom:12px}
-.subject h3{margin-bottom:6px}
-.subject p{color:#9fb0c7;font-size:13px}
-.lesson,.quiz,.result{display:none}
-.lesson.active,.quiz.active,.result.active{display:block}
+
+.subject .icon{
+font-size:35px;
+margin-bottom:12px
+}
+
+.subject h3{
+margin-bottom:6px
+}
+
+.subject p{
+color:#9fb0c7;
+font-size:13px
+}
+
+.lesson,.quiz,.result{
+display:none
+}
+
+.lesson.active,.quiz.active,.result.active{
+display:block
+}
+
 .card{
 background:#0e1d31;
 border:1px solid #203957;
@@ -58,7 +132,16 @@ border-radius:22px;
 padding:22px;
 margin-bottom:15px
 }
-.card p{color:#b4c1d2;line-height:1.7}
+
+.card h3{
+margin-bottom:10px
+}
+
+.card p{
+color:#b4c1d2;
+line-height:1.7
+}
+
 .back{
 background:#ffffff12;
 border:1px solid #ffffff22;
@@ -68,6 +151,7 @@ border-radius:20px;
 margin-bottom:20px;
 cursor:pointer
 }
+
 .button{
 border:0;
 padding:13px 20px;
@@ -78,6 +162,28 @@ font-weight:bold;
 cursor:pointer;
 margin-top:10px
 }
+
+.button:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 25px #0008
+}
+
+.timer{
+float:right;
+background:#351c2a;
+color:#ff8da5;
+padding:9px 14px;
+border-radius:20px;
+font-weight:bold
+}
+
+.question{
+font-size:20px;
+font-weight:bold;
+line-height:1.5;
+margin-bottom:18px
+}
+
 .option{
 display:block;
 width:100%;
@@ -88,25 +194,29 @@ border:1px solid #294562;
 background:#101f34;
 color:white;
 text-align:left;
-cursor:pointer
+cursor:pointer;
+transition:.2s
 }
-.option:hover{border-color:#61dafb}
-.correct{background:#124c37!important;border-color:#36e69b!important}
-.wrong{background:#572331!important;border-color:#ff6680!important}
-.question{
-font-size:20px;
-font-weight:bold;
-line-height:1.5;
-margin-bottom:18px
+
+.option:hover{
+border-color:#61dafb;
+transform:translateX(3px)
 }
-.timer{
-float:right;
-background:#351c2a;
-color:#ff8da5;
-padding:9px 14px;
-border-radius:20px;
-font-weight:bold
+
+.option:disabled{
+cursor:not-allowed
 }
+
+.correct{
+background:#124c37!important;
+border-color:#36e69b!important
+}
+
+.wrong{
+background:#572331!important;
+border-color:#ff6680!important
+}
+
 .progress{
 height:9px;
 background:#1a2a3e;
@@ -114,18 +224,26 @@ border-radius:20px;
 overflow:hidden;
 margin:15px 0 20px
 }
+
 .progress-bar{
 height:100%;
 width:0%;
-background:linear-gradient(90deg,#61dafb,#7c5cff)
+background:linear-gradient(90deg,#61dafb,#7c5cff);
+transition:.4s
 }
-.score{text-align:center;padding:30px 10px}
+
+.score{
+text-align:center;
+padding:30px 10px
+}
+
 .score-number{
 font-size:58px;
 font-weight:900;
 color:#61dafb;
 margin:15px
 }
+
 .tip{
 background:#102b3c;
 border-left:4px solid #61dafb;
@@ -134,6 +252,7 @@ border-radius:12px;
 color:#c4d4e7;
 line-height:1.6
 }
+
 .review-item{
 background:#101f34;
 border-radius:15px;
@@ -141,6 +260,7 @@ padding:15px;
 margin:10px 0;
 border-left:4px solid #ff6680
 }
+
 .bottom-nav{
 position:fixed;
 left:12px;
@@ -150,10 +270,12 @@ z-index:20;
 display:flex;
 justify-content:space-around;
 background:#0b1728ee;
+backdrop-filter:blur(15px);
 border:1px solid #ffffff1c;
 border-radius:25px;
 padding:10px 5px
 }
+
 .bottom-nav button{
 background:none;
 border:0;
@@ -161,16 +283,42 @@ color:#9fb0c7;
 font-size:12px;
 cursor:pointer
 }
+
 .bottom-nav span{
 display:block;
 font-size:20px;
 margin-bottom:3px
 }
-footer{text-align:center;color:#778ba5;padding:25px}
+
+footer{
+text-align:center;
+color:#778ba5;
+padding:25px
+}
 
 @media(max-width:500px){
-.subjects{grid-template-columns:1fr 1fr}
-.welcome h1{font-size:27px}
+
+.subjects{
+grid-template-columns:1fr 1fr
+}
+
+.welcome h1{
+font-size:27px
+}
+
+.question{
+font-size:18px
+}
+
+.logo{
+font-size:23px
+}
+
+.logo img{
+width:42px;
+height:42px
+}
+
 }
 </style>
 </head>
@@ -178,62 +326,110 @@ footer{text-align:center;color:#778ba5;padding:25px}
 <body>
 
 <header>
-<div class="logo">Learn<span>Mate</span> 📚</div>
+
+<div class="logo">
+
+<img src="learnmate-icon.png" alt="LearnMate">
+
+<div>
+Learn<span>Mate</span>
+</div>
+
+</div>
 
 <div class="welcome">
+
 <h1>Learn. Practise. Improve. 🚀</h1>
-<p>Study lessons and test your knowledge.</p>
+
+<p>
+Study lessons and test your knowledge with LearnMate.
+</p>
+
 </div>
+
 </header>
 
+
 <main class="container">
+
 
 <!-- HOME -->
 
 <div id="home">
 
 <div class="title">
+
 <h2>Choose a Subject 📚</h2>
+
 <p>Select a subject to start learning.</p>
+
 </div>
+
 
 <div class="subjects">
 
+
 <div class="subject" onclick="openSubject('math')">
+
 <div class="icon">🧮</div>
+
 <h3>Mathematics</h3>
+
 <p>Numbers and problem solving.</p>
+
 </div>
+
 
 <div class="subject" onclick="openSubject('english')">
+
 <div class="icon">📖</div>
+
 <h3>English</h3>
+
 <p>Grammar and vocabulary.</p>
+
 </div>
+
 
 <div class="subject" onclick="openSubject('science')">
+
 <div class="icon">🔬</div>
+
 <h3>Science</h3>
+
 <p>Explore the world of science.</p>
+
 </div>
+
 
 <div class="subject" onclick="openSubject('computing')">
+
 <div class="icon">💻</div>
+
 <h3>Computing</h3>
+
 <p>Computers and digital technology.</p>
-</div>
 
 </div>
+
+
+</div>
+
 
 <br>
 
+
 <div class="title">
+
 <h2>💡 Study Tip</h2>
+
 </div>
 
+
 <div class="tip">
-Study a little every day. Practise questions after each lesson
-and review the questions you get wrong.
+
+Study a little every day. Practise questions after each lesson and review the questions you get wrong.
+
 </div>
 
 </div>
@@ -246,20 +442,30 @@ and review the questions you get wrong.
 <button class="back" onclick="goHome()">← Back</button>
 
 <div class="title">
+
 <h2>🧮 Mathematics</h2>
+
 <p>Basic Mathematics</p>
+
 </div>
+
 
 <div class="card">
+
 <h3>Fractions</h3>
+
 <p>
-A fraction represents part of a whole. For example,
-1/2 means one part out of two equal parts.
+A fraction represents part of a whole.
+For example, 1/2 means one part out of two equal parts.
 </p>
+
 </div>
 
+
 <button class="button" onclick="startQuiz('math')">
+
 📝 Start Practice
+
 </button>
 
 </div>
@@ -272,20 +478,30 @@ A fraction represents part of a whole. For example,
 <button class="back" onclick="goHome()">← Back</button>
 
 <div class="title">
+
 <h2>📖 English</h2>
+
 <p>Grammar and vocabulary</p>
+
 </div>
 
+
 <div class="card">
+
 <h3>Synonyms</h3>
+
 <p>
 Synonyms are words with similar meanings.
 For example, happy and joyful.
 </p>
+
 </div>
 
+
 <button class="button" onclick="startQuiz('english')">
+
 📝 Start Practice
+
 </button>
 
 </div>
@@ -298,20 +514,30 @@ For example, happy and joyful.
 <button class="back" onclick="goHome()">← Back</button>
 
 <div class="title">
+
 <h2>🔬 Science</h2>
+
 <p>Introduction to Science</p>
+
 </div>
 
+
 <div class="card">
+
 <h3>Living Things</h3>
+
 <p>
 Living things can grow, reproduce and respond to their environment.
 Examples include humans, animals and plants.
 </p>
+
 </div>
 
+
 <button class="button" onclick="startQuiz('science')">
+
 📝 Start Practice
+
 </button>
 
 </div>
@@ -324,36 +550,54 @@ Examples include humans, animals and plants.
 <button class="back" onclick="goHome()">← Back</button>
 
 <div class="title">
+
 <h2>💻 Computing</h2>
+
 <p>Computer studies and digital technology</p>
+
 </div>
 
+
 <div class="card">
+
 <h3>What is a Computer?</h3>
+
 <p>
 A computer is an electronic device that receives data,
 processes it and produces information.
 </p>
+
 </div>
 
+
 <div class="card">
+
 <h3>Computer Hardware</h3>
+
 <p>
 Hardware refers to the physical parts of a computer,
 such as the keyboard, mouse, monitor and printer.
 </p>
+
 </div>
 
+
 <div class="card">
+
 <h3>Computer Software</h3>
+
 <p>
 Software is a set of instructions that tells a computer
 what to do. Examples include operating systems and apps.
 </p>
+
 </div>
 
+
 <button class="button" onclick="startQuiz('computing')">
+
 📝 Start Computing Practice
+
 </button>
 
 </div>
@@ -370,16 +614,22 @@ what to do. Examples include operating systems and apps.
 <h2 id="quizTitle">Practice</h2>
 
 <div class="timer">
+
 ⏱️ <span id="timer">05:00</span>
+
 </div>
 
 <div style="clear:both"></div>
 
-<div class="progress">
-<div id="progressBar" class="progress-bar"></div>
 </div>
 
+
+<div class="progress">
+
+<div id="progressBar" class="progress-bar"></div>
+
 </div>
+
 
 <div class="card">
 
@@ -387,11 +637,15 @@ what to do. Examples include operating systems and apps.
 
 <div id="options"></div>
 
-<button id="nextButton"
+
+<button
+id="nextButton"
 class="button"
 onclick="nextQuestion()"
 style="display:none">
+
 Next Question →
+
 </button>
 
 </div>
@@ -415,44 +669,76 @@ Next Question →
 
 <p id="scoreMessage"></p>
 
+
 <button class="button" onclick="restartQuiz()">
+
 🔄 Try Again
+
 </button>
 
+
 <button class="button" onclick="goHome()">
+
 📚 Subjects
+
 </button>
 
 </div>
+
 
 <div id="review"></div>
 
 </div>
 
+
 </main>
 
 
 <footer>
-LearnMate 📚<br>
+
+<img
+src="learnmate-icon.png"
+alt="LearnMate"
+style="width:45px;height:45px;border-radius:12px;vertical-align:middle;margin-bottom:8px"
+>
+
+<br>
+
+LearnMate 📚
+
+<br>
+
 Learn today. Build tomorrow.
+
 </footer>
 
 
 <div class="bottom-nav">
 
 <button onclick="goHome()">
+
 <span>🏠</span>
+
 Home
+
 </button>
+
 
 <button onclick="goHome()">
+
 <span>📚</span>
+
 Subjects
+
 </button>
 
+
 <button onclick="showTip()">
+
 <span>💡</span>
+
 Tips
+
 </button>
 
 </div>
@@ -651,6 +937,7 @@ answer:0
 
 };
 
+
 let currentSubject="";
 let currentQuestion=0;
 let score=0;
@@ -658,12 +945,15 @@ let timer=300;
 let timerInterval;
 let wrongAnswers=[];
 
+
 function hideAll(){
 
 document.getElementById("home").style.display="none";
 
 document.querySelectorAll(".lesson").forEach(function(x){
+
 x.classList.remove("active");
+
 });
 
 document.getElementById("quiz").classList.remove("active");
@@ -671,6 +961,7 @@ document.getElementById("quiz").classList.remove("active");
 document.getElementById("result").classList.remove("active");
 
 }
+
 
 function goHome(){
 
@@ -684,6 +975,7 @@ window.scrollTo(0,0);
 
 }
 
+
 function openSubject(subject){
 
 hideAll();
@@ -693,6 +985,7 @@ document.getElementById(subject).classList.add("active");
 window.scrollTo(0,0);
 
 }
+
 
 function showTip(){
 
@@ -704,12 +997,17 @@ behavior:"smooth"
 
 }
 
+
 function startQuiz(subject){
 
 currentSubject=subject;
+
 currentQuestion=0;
+
 score=0;
+
 wrongAnswers=[];
+
 timer=300;
 
 hideAll();
@@ -725,6 +1023,7 @@ showQuestion();
 
 }
 
+
 function startTimer(){
 
 clearInterval(timerInterval);
@@ -738,17 +1037,22 @@ timer--;
 updateTimer();
 
 if(timer<=0){
+
 clearInterval(timerInterval);
+
 showResult();
+
 }
 
 },1000);
 
 }
 
+
 function updateTimer(){
 
 let minutes=Math.floor(timer/60);
+
 let seconds=timer%60;
 
 document.getElementById("timer").textContent=
@@ -757,9 +1061,11 @@ String(seconds).padStart(2,"0");
 
 }
 
+
 function showQuestion(){
 
 let list=questions[currentSubject];
+
 let item=list[currentQuestion];
 
 document.getElementById("question").textContent=
@@ -769,22 +1075,28 @@ let options=document.getElementById("options");
 
 options.innerHTML="";
 
+
 item.options.forEach(function(option,index){
 
 let button=document.createElement("button");
 
 button.className="option";
+
 button.textContent=option;
 
 button.onclick=function(){
+
 chooseAnswer(index,button);
+
 };
 
 options.appendChild(button);
 
 });
 
+
 document.getElementById("nextButton").style.display="none";
+
 
 let progress=(currentQuestion/list.length)*100;
 
@@ -793,6 +1105,7 @@ progress+"%";
 
 }
 
+
 function chooseAnswer(index,button){
 
 let item=questions[currentSubject][currentQuestion];
@@ -800,12 +1113,16 @@ let item=questions[currentSubject][currentQuestion];
 let all=document.querySelectorAll(".option");
 
 all.forEach(function(x){
+
 x.disabled=true;
+
 });
+
 
 if(index===item.answer){
 
 button.classList.add("correct");
+
 score++;
 
 }else{
@@ -815,22 +1132,29 @@ button.classList.add("wrong");
 all[item.answer].classList.add("correct");
 
 wrongAnswers.push({
+
 question:item.q,
+
 yourAnswer:item.options[index],
+
 correctAnswer:item.options[item.answer]
+
 });
 
 }
 
+
 document.getElementById("nextButton").style.display="block";
 
 }
+
 
 function nextQuestion(){
 
 currentQuestion++;
 
 let list=questions[currentSubject];
+
 
 if(currentQuestion>=list.length){
 
@@ -844,6 +1168,7 @@ showQuestion();
 
 }
 
+
 function showResult(){
 
 clearInterval(timerInterval);
@@ -852,38 +1177,55 @@ hideAll();
 
 document.getElementById("result").classList.add("active");
 
+
 let total=questions[currentSubject].length;
 
 let percentage=Math.round((score/total)*100);
 
+
 document.getElementById("scoreNumber").textContent=
 score+"/"+total;
+
 
 document.getElementById("percentage").textContent=
 "Percentage: "+percentage+"%";
 
+
 let message="Keep practising! 💪";
 
+
 if(percentage===100){
+
 message="Excellent! Perfect score! 🏆";
+
 }else if(percentage>=80){
+
 message="Excellent work! 🌟";
+
 }else if(percentage>=60){
+
 message="Good job! Keep improving! 👍";
+
 }else{
+
 message="Keep studying and try again! 📚";
+
 }
+
 
 document.getElementById("scoreMessage").textContent=
 message;
+
 
 let review=document.getElementById("review");
 
 review.innerHTML="<h3>❌ Review</h3>";
 
+
 wrongAnswers.forEach(function(item,index){
 
 review.innerHTML+=
+
 "<div class='review-item'>"+
 "<strong>"+(index+1)+". "+item.question+"</strong><br><br>"+
 "Your answer: "+item.yourAnswer+
@@ -893,16 +1235,22 @@ item.correctAnswer+
 
 });
 
+
 if(wrongAnswers.length===0){
 
 review.innerHTML+=
-"<div class='card'><p>Perfect score! 🏆</p></div>";
+
+"<div class='card'>"+
+"<p>Perfect score! 🏆</p>"+
+"</div>";
 
 }
+
 
 window.scrollTo(0,0);
 
 }
+
 
 function restartQuiz(){
 
