@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08111f">
+
+<title>LearnMate - Learning App</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#07111f;
+    color:#fff;
+    min-height:100vh;
+    padding-bottom:80px;
+}
+
+header{
+    padding:30px 20px;
+    background:linear-gradient(135deg,#0b2447,#123b67);
+    border-bottom-left-radius:30px;
+    border-bottom-right-radius:30px;
+}
+
+.logo{
+    font-size:27px;
+    font-weight:900;
+}
+
+.logo span{
+    color:#61dafb;
+}
+
+.welcome{
+    margin-top:30px;
+}
+
+.welcome h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.welcome p{
+    color:#b9c8dc;
+    line-height:1.6;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:25px 18px;
+}
+
+.title{
+    margin:15px 0 20px;
+}
+
+.title h2{
+    font-size:26px;
+}
+
+.title p{
+    color:#9fb0c7;
+    margin-top:5px;
+}
+
+.subjects{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.subject{
+    padding:22px;
+    border-radius:22px;
+    background:#0e1d31;
+    border:1px solid #203957;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.subject:hover{
+    transform:translateY(-5px);
+    border-color:#61dafb;
+    box-shadow:0 0 25px #61dafb33;
+}
+
+.subject .icon{
+    font-size:35px;
+    margin-bottom:12px;
+}
+
+.subject h3{
+    margin-bottom:6px;
+}
+
+.subject p{
+    color:#9fb0c7;
+    font-size:13px;
+}
+
+.card{
+    background:#0e1d31;
+    border:1px solid #203957;
+    border-radius:22px;
+    padding:22px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#b4c1d2;
+    line-height:1.7;
+}
+
+.lesson{
+    display:none;
+}
+
+.lesson.active{
+    display:block;
+}
+
+.back{
+    background:#ffffff12;
+    border:1px solid #ffffff22;
+    color:white;
+    padding:10px 17px;
+    border-radius:20px;
+    margin-bottom:20px;
+    cursor:pointer;
+}
+
+.quiz{
+    display:none;
+}
+
+.quiz.active{
+    display:block;
+}
+
+.question{
+    font-size:20px;
+    font-weight:bold;
+    line-height:1.5;
+    margin-bottom:18px;
+}
+
+.option{
+    display:block;
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border-radius:15px;
+    border:1px solid #294562;
+    background:#101f34;
+    color:white;
+    text-align:left;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.option:hover{
+    border-color:#61dafb;
+}
+
+.correct{
+    background:#124c37;
+    border-color:#36e69b;
+}
+
+.wrong{
+    background:#572331;
+    border-color:#ff6680;
+}
+
+.button{
+    border:0;
+    padding:13px 20px;
+    border-radius:25px;
+    background:linear-gradient(90deg,#61dafb,#7c5cff);
+    color:#06101c;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.score{
+    text-align:center;
+    padding:30px 10px;
+}
+
+.score-number{
+    font-size:55px;
+    font-weight:900;
+    color:#61dafb;
+    margin:15px;
+}
+
+.progress{
+    height:9px;
+    background:#1a2a3e;
+    border-radius:20px;
+    overflow:hidden;
+    margin:15px 0;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#61dafb,#7c5cff);
+    transition:.4s;
+}
+
+.tip{
+    background:#102b3c;
+    border-left:4px solid #61dafb;
+    padding:18px;
+    border-radius:12px;
+    color:#c4d4e7;
+    line-height:1.6;
+}
+
+.bottom-nav{
+    position:fixed;
+    left:12px;
+    right:12px;
+    bottom:10px;
+    z-index:20;
+    display:flex;
+    justify-content:space-around;
+    background:#0b1728ee;
+    backdrop-filter:blur(15px);
+    border:1px solid #ffffff1c;
+    border-radius:25px;
+    padding:10px 5px;
+}
+
+.bottom-nav button{
+    background:none;
+    border:0;
+    color:#9fb0c7;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.bottom-nav span{
+    display:block;
+    font-size:20px;
+    margin-bottom:3px;
+}
+
+.bottom-nav button.active{
+    color:#61dafb;
+}
+
+footer{
+    text-align:center;
+    color:#778ba5;
+    padding:25px;
+}
+
+@media(max-width:500px){
+    .subjects{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .welcome h1{
+        font-size:28px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+Learn<span>Mate</span> 📚
+</div>
+
+<div class="welcome">
+
+<h1>Learn something new today! 👋</h1>
+
+<p>
+Study lessons, practise questions and test your knowledge.
+</p>
+
+</div>
+
+</header>
+
+<main class="container">
+
+<!-- HOME -->
+
+<div id="home">
+
+<div class="title">
+<h2>Choose a Subject 📚</h2>
+<p>Select a subject to start learning.</p>
+</div>
+
+<div class="subjects">
+
+<div class="subject" onclick="openSubject('math')">
+<div class="icon">🧮</div>
+<h3>Mathematics</h3>
+<p>Numbers, algebra and problem solving.</p>
+</div>
+
+<div class="subject" onclick="openSubject('english')">
+<div class="icon">📖</div>
+<h3>English</h3>
+<p>Grammar, vocabulary and comprehension.</p>
+</div>
+
+<div class="subject" onclick="openSubject('science')">
+<div class="icon">🔬</div>
+<h3>Science</h3>
+<p>Explore the world of science.</p>
+</div>
+
+<div class="subject" onclick="openSubject('ict')">
+<div class="icon">💻</div>
+<h3>ICT</h3>
+<p>Computers and digital technology.</p>
+</div>
+
+</div>
+
+<br>
+
+<div class="title">
+<h2>💡 Study Tip</h2>
+</div>
+
+<div class="tip">
+Study for a short time every day instead of waiting until
+the last minute. Practise what you learn and review your mistakes.
+</div>
+
+</div>
+
+
+<!-- MATHEMATICS -->
+
+<div id="math" class="lesson">
+
+<button class="back" onclick="goHome()">← Back</button>
+
+<div class="title">
+<h2>🧮 Mathematics</h2>
+<p>Basic Mathematics</p>
+</div>
+
+<div class="card">
+
+<h3>Fractions</h3>
+
+<p>
+A fraction represents part of a whole.
+For example, 1/2 means one part out of two equal parts.
+</p>
+
+<br>
+
+<p>
+To add fractions with the same denominator,
+add the numerators and keep the denominator.
+</p>
+
+</div>
+
+<button class="button" onclick="startQuiz('math')">
+Start Mathematics Quiz
+</button>
+
+</div>
+
+
+<!-- ENGLISH -->
+
+<div id="english" class="lesson">
+
+<button class="back" onclick="goHome()">← Back</button>
+
+<div class="title">
+<h2>📖 English</h2>
+<p>Grammar and Vocabulary</p>
+</div>
+
+<div class="card">
+
+<h3>Synonyms</h3>
+
+<p>
+Synonyms are words that have similar meanings.
+</p>
+
+<br>
+
+<p>
+Example:
+<strong>Happy</strong> and <strong>Joyful</strong>
+have similar meanings.
+</p>
+
+</div>
+
+<button class="button" onclick="startQuiz('english')">
+Start English Quiz
+</button>
+
+</div>
+
+
+<!-- SCIENCE -->
+
+<div id="science" class="lesson">
+
+<button class="back" onclick="goHome()">← Back</button>
+
+<div class="title">
+<h2>🔬 Science</h2>
+<p>Introduction to Science</p>
+</div>
+
+<div class="card">
+
+<h3>Living Things</h3>
+
+<p>
+Living things can grow, reproduce, respond to their environment
+and carry out life processes.
+</p>
+
+<br>
+
+<p>
+Examples include humans, animals and plants.
+</p>
+
+</div>
+
+<button class="button" onclick="startQuiz('science')">
+Start Science Quiz
+</button>
+
+</div>
+
+
+<!-- ICT -->
+
+<div id="ict" class="lesson">
+
+<button class="back" onclick="goHome()">← Back</button>
+
+<div class="title">
+<h2>💻 ICT</h2>
+<p>Computer Basics</p>
+</div>
+
+<div class="card">
+
+<h3>What is a Computer?</h3>
+
+<p>
+A computer is an electronic device that receives data,
+processes it and produces information.
+</p>
+
+<br>
+
+<p>
+Examples include desktop computers, laptops and smartphones.
+</p>
+
+</div>
+
+<button class="button" onclick="startQuiz('ict')">
+Start ICT Quiz
+</button>
+
+</div>
+
+
+<!-- QUIZ -->
+
+<div id="quiz" class="quiz">
+
+<button class="back" onclick="goHome()">← Home</button>
+
+<div class="title">
+
+<h2 id="quizTitle">Quiz</h2>
+
+<div class="progress">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+</div>
+
+<div class="card">
+
+<div id="question" class="question"></div>
+
+<div id="options"></div>
+
+<button id="nextButton" class="button" onclick="nextQuestion()" style="display:none">
+Next Question →
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SCORE -->
+
+<div id="result" class="quiz">
+
+<div class="card score">
+
+<h2>🎉 Quiz Complete!</h2>
+
+<div id="scoreNumber" class="score-number">
+0/0
+</div>
+
+<p id="scoreMessage"></p>
+
+<button class="button" onclick="goHome()">
+Back to Subjects
+</button>
+
+</div>
+
+</div>
+
+</main>
+
+
+<footer>
+LearnMate 📚
+<br>
+Learn today. Build tomorrow.
+</footer>
+
+
+<div class="bottom-nav">
+
+<button class="active" onclick="goHome()">
+<span>🏠</span>
+Home
+</button>
+
+<button onclick="showSubjects()">
+<span>📚</span>
+Subjects
+</button>
+
+<button onclick="showTip()">
+<span>💡</span>
+Tips
+</button>
+
+</div>
+
+
+<script>
+
+const questions={
+
+math:[
+{
+q:"What is 1/2 + 1/2?",
+options:["1","1/2","2","1/4"],
+answer:0
+},
+{
+q:"What is 5 × 2?",
+options:["7","10","12","15"],
+answer:1
+},
+{
+q:"What is 20 ÷ 4?",
+options:["4","5","6","8"],
+answer:1
+}
+],
+
+english:[
+{
+q:"Which word is a synonym for 'happy'?",
+options:["Sad","Angry","Joyful","Tired"],
+answer:2
+},
+{
+q:"What is the opposite of 'hot'?",
+options:["Warm","Cold","Heat","Fire"],
+answer:1
+},
+{
+q:"Which word is a noun?",
+options:["Run","Beautiful","School","Quickly"],
+answer:2
+}
+],
+
+science:[
+{
+q:"Which of these is a living thing?",
+options:["Stone","Chair","Tree","Bottle"],
+answer:2
+},
+{
+q:"What do plants need for photosynthesis?",
+options:["Sunlight","Plastic","Metal","Sand only"],
+answer:0
+},
+{
+q:"Which organ pumps blood around the body?",
+options:["Brain","Heart","Lung","Stomach"],
+answer:1
+}
+],
+
+ict:[
+{
+q:"What does CPU stand for?",
+options:[
+"Central Processing Unit",
+"Computer Personal Unit",
+"Central Program Utility",
+"Computer Processing User"
+],
+answer:0
+},
+{
+q:"Which device is used to type?",
+options:["Monitor","Keyboard","Speaker","Printer"],
+answer:1
+},
+{
+q:"Which one is a computer?",
+options:["Laptop","Chair","Book","Table"],
+answer:0
+}
+]
+
+};
+
+let currentSubject="";
+let currentQuestion=0;
+let score=0;
+
+function hideAll(){
+
+document.getElementById("home").style.display="none";
+
+document.querySelectorAll(".lesson").forEach(function(x){
+x.classList.remove("active");
+});
+
+document.getElementById("quiz").classList.remove("active");
+
+document.getElementById("result").classList.remove("active");
+
+}
+
+function openSubject(subject){
+
+hideAll();
+
+document.getElementById(subject).classList.add("active");
+
+window.scrollTo(0,0);
+
+}
+
+function goHome(){
+
+hideAll();
+
+document.getElementById("home").style.display="block";
+
+window.scrollTo(0,0);
+
+}
+
+function showSubjects(){
+
+goHome();
+
+}
+
+function showTip(){
+
+goHome();
+
+document.querySelector(".tip").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+function startQuiz(subject){
+
+currentSubject=subject;
+
+currentQuestion=0;
+
+score=0;
+
+hideAll();
+
+document.getElementById("quiz").classList.add("active");
+
+document.getElementById("quizTitle").textContent=
+subject.toUpperCase()+" QUIZ";
+
+showQuestion();
+
+}
+
+function showQuestion(){
+
+let list=questions[currentSubject];
+
+let item=list[currentQuestion];
+
+document.getElementById("question").textContent=
+(currentQuestion+1)+". "+item.q;
+
+let options=document.getElementById("options");
+
+options.innerHTML="";
+
+item.options.forEach(function(option,index){
+
+let button=document.createElement("button");
+
+button.className="option";
+
+button.textContent=option;
+
+button.onclick=function(){
+chooseAnswer(index,button);
+};
+
+options.appendChild(button);
+
+});
+
+document.getElementById("nextButton").style.display="none";
+
+let progress=((currentQuestion)/list.length)*100;
+
+document.getElementById("progressBar").style.width=
+progress+"%";
+
+}
+
+function chooseAnswer(index,button){
+
+let item=questions[currentSubject][currentQuestion];
+
+let all=document.querySelectorAll(".option");
+
+all.forEach(function(x){
+x.disabled=true;
+});
+
+if(index===item.answer){
+
+button.classList.add("correct");
+
+score++;
+
+}else{
+
+button.classList.add("wrong");
+
+all[item.answer].classList.add("correct");
+
+}
+
+document.getElementById("nextButton").style.display="block";
+
+}
+
+function nextQuestion(){
+
+currentQuestion++;
+
+let list=questions[currentSubject];
+
+if(currentQuestion>=list.length){
+
+showResult();
+
+}else{
+
+showQuestion();
+
+}
+
+}
+
+function showResult(){
+
+hideAll();
+
+document.getElementById("result").classList.add("active");
+
+document.getElementById("scoreNumber").textContent=
+score+"/"+questions[currentSubject].length;
+
+let percentage=
+(score/questions[currentSubject].length)*100;
+
+let message="Keep practising! 💪";
+
+if(percentage===100){
+message="Excellent! Perfect score! 🏆";
+}else if(percentage>=66){
+message="Great work! Keep improving! 🌟";
+}else if(percentage>=40){
+message="Good attempt. Study and try again! 📚";
+}
+
+document.getElementById("scoreMessage").textContent=
+message;
+
+}
+
+</script>
+
+</body>
+</html>
