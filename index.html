@@ -3,285 +3,321 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#08111f">
-
-<title>LearnMate - Learning App</title>
+<meta name="theme-color" content="#07111f">
+<title>LearnMate - BECE Practice</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-    font-family:Arial,sans-serif;
-    background:#07111f;
-    color:#fff;
-    min-height:100vh;
-    padding-bottom:80px;
+font-family:Arial,sans-serif;
+background:#07111f;
+color:#fff;
+min-height:100vh;
+padding-bottom:85px
 }
 
 header{
-    padding:30px 20px;
-    background:linear-gradient(135deg,#0b2447,#123b67);
-    border-bottom-left-radius:30px;
-    border-bottom-right-radius:30px;
+padding:30px 20px;
+background:linear-gradient(135deg,#0b2447,#123b67);
+border-bottom-left-radius:30px;
+border-bottom-right-radius:30px
 }
 
 .logo{
-    font-size:27px;
-    font-weight:900;
+font-size:28px;
+font-weight:900
 }
 
 .logo span{
-    color:#61dafb;
+color:#61dafb
 }
 
 .welcome{
-    margin-top:30px;
+margin-top:28px
 }
 
 .welcome h1{
-    font-size:32px;
-    margin-bottom:8px;
+font-size:30px;
+margin-bottom:8px
 }
 
 .welcome p{
-    color:#b9c8dc;
-    line-height:1.6;
+color:#b9c8dc;
+line-height:1.6
 }
 
 .container{
-    max-width:900px;
-    margin:auto;
-    padding:25px 18px;
+max-width:900px;
+margin:auto;
+padding:25px 18px
 }
 
 .title{
-    margin:15px 0 20px;
+margin:15px 0 20px
 }
 
 .title h2{
-    font-size:26px;
+font-size:27px
 }
 
 .title p{
-    color:#9fb0c7;
-    margin-top:5px;
+color:#9fb0c7;
+margin-top:6px
 }
 
 .subjects{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px
 }
 
 .subject{
-    padding:22px;
-    border-radius:22px;
-    background:#0e1d31;
-    border:1px solid #203957;
-    cursor:pointer;
-    transition:.3s;
+padding:22px;
+border-radius:22px;
+background:#0e1d31;
+border:1px solid #203957;
+cursor:pointer;
+transition:.3s
 }
 
 .subject:hover{
-    transform:translateY(-5px);
-    border-color:#61dafb;
-    box-shadow:0 0 25px #61dafb33;
+transform:translateY(-5px);
+border-color:#61dafb;
+box-shadow:0 0 25px #61dafb33
 }
 
 .subject .icon{
-    font-size:35px;
-    margin-bottom:12px;
+font-size:35px;
+margin-bottom:12px
 }
 
 .subject h3{
-    margin-bottom:6px;
+margin-bottom:6px
 }
 
 .subject p{
-    color:#9fb0c7;
-    font-size:13px;
+color:#9fb0c7;
+font-size:13px
 }
 
 .card{
-    background:#0e1d31;
-    border:1px solid #203957;
-    border-radius:22px;
-    padding:22px;
-    margin-bottom:15px;
+background:#0e1d31;
+border:1px solid #203957;
+border-radius:22px;
+padding:22px;
+margin-bottom:15px
 }
 
 .card h3{
-    margin-bottom:10px;
+margin-bottom:10px
 }
 
 .card p{
-    color:#b4c1d2;
-    line-height:1.7;
+color:#b4c1d2;
+line-height:1.7
 }
 
-.lesson{
-    display:none;
+.lesson,
+.quiz,
+.result{
+display:none
 }
 
-.lesson.active{
-    display:block;
+.lesson.active,
+.quiz.active,
+.result.active{
+display:block
 }
 
 .back{
-    background:#ffffff12;
-    border:1px solid #ffffff22;
-    color:white;
-    padding:10px 17px;
-    border-radius:20px;
-    margin-bottom:20px;
-    cursor:pointer;
-}
-
-.quiz{
-    display:none;
-}
-
-.quiz.active{
-    display:block;
-}
-
-.question{
-    font-size:20px;
-    font-weight:bold;
-    line-height:1.5;
-    margin-bottom:18px;
-}
-
-.option{
-    display:block;
-    width:100%;
-    padding:14px;
-    margin:10px 0;
-    border-radius:15px;
-    border:1px solid #294562;
-    background:#101f34;
-    color:white;
-    text-align:left;
-    cursor:pointer;
-    transition:.25s;
-}
-
-.option:hover{
-    border-color:#61dafb;
-}
-
-.correct{
-    background:#124c37;
-    border-color:#36e69b;
-}
-
-.wrong{
-    background:#572331;
-    border-color:#ff6680;
+background:#ffffff12;
+border:1px solid #ffffff22;
+color:white;
+padding:10px 17px;
+border-radius:20px;
+margin-bottom:20px;
+cursor:pointer
 }
 
 .button{
-    border:0;
-    padding:13px 20px;
-    border-radius:25px;
-    background:linear-gradient(90deg,#61dafb,#7c5cff);
-    color:#06101c;
-    font-weight:bold;
-    cursor:pointer;
-    margin-top:10px;
+border:0;
+padding:13px 20px;
+border-radius:25px;
+background:linear-gradient(90deg,#61dafb,#7c5cff);
+color:#06101c;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px
 }
 
-.score{
-    text-align:center;
-    padding:30px 10px;
+.practice{
+margin-top:15px
 }
 
-.score-number{
-    font-size:55px;
-    font-weight:900;
-    color:#61dafb;
-    margin:15px;
+.quiz-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:18px
+}
+
+.timer{
+background:#351c2a;
+color:#ff8da5;
+padding:9px 14px;
+border-radius:20px;
+font-weight:bold
+}
+
+.question{
+font-size:20px;
+font-weight:bold;
+line-height:1.5;
+margin-bottom:18px
+}
+
+.option{
+display:block;
+width:100%;
+padding:14px;
+margin:10px 0;
+border-radius:15px;
+border:1px solid #294562;
+background:#101f34;
+color:white;
+text-align:left;
+cursor:pointer;
+transition:.25s
+}
+
+.option:hover{
+border-color:#61dafb
+}
+
+.correct{
+background:#124c37!important;
+border-color:#36e69b!important
+}
+
+.wrong{
+background:#572331!important;
+border-color:#ff6680!important
+}
+
+.option:disabled{
+cursor:not-allowed
 }
 
 .progress{
-    height:9px;
-    background:#1a2a3e;
-    border-radius:20px;
-    overflow:hidden;
-    margin:15px 0;
+height:9px;
+background:#1a2a3e;
+border-radius:20px;
+overflow:hidden;
+margin:10px 0 20px
 }
 
 .progress-bar{
-    height:100%;
-    width:0%;
-    background:linear-gradient(90deg,#61dafb,#7c5cff);
-    transition:.4s;
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#61dafb,#7c5cff);
+transition:.4s
+}
+
+.score{
+text-align:center;
+padding:30px 10px
+}
+
+.score-number{
+font-size:58px;
+font-weight:900;
+color:#61dafb;
+margin:15px
+}
+
+.result-message{
+color:#b9c8dc;
+line-height:1.6
+}
+
+.review{
+margin-top:25px;
+text-align:left
+}
+
+.review-item{
+background:#101f34;
+border-radius:15px;
+padding:15px;
+margin:10px 0;
+border-left:4px solid #ff6680
 }
 
 .tip{
-    background:#102b3c;
-    border-left:4px solid #61dafb;
-    padding:18px;
-    border-radius:12px;
-    color:#c4d4e7;
-    line-height:1.6;
+background:#102b3c;
+border-left:4px solid #61dafb;
+padding:18px;
+border-radius:12px;
+color:#c4d4e7;
+line-height:1.6
 }
 
 .bottom-nav{
-    position:fixed;
-    left:12px;
-    right:12px;
-    bottom:10px;
-    z-index:20;
-    display:flex;
-    justify-content:space-around;
-    background:#0b1728ee;
-    backdrop-filter:blur(15px);
-    border:1px solid #ffffff1c;
-    border-radius:25px;
-    padding:10px 5px;
+position:fixed;
+left:12px;
+right:12px;
+bottom:10px;
+z-index:20;
+display:flex;
+justify-content:space-around;
+background:#0b1728ee;
+backdrop-filter:blur(15px);
+border:1px solid #ffffff1c;
+border-radius:25px;
+padding:10px 5px
 }
 
 .bottom-nav button{
-    background:none;
-    border:0;
-    color:#9fb0c7;
-    font-size:12px;
-    cursor:pointer;
+background:none;
+border:0;
+color:#9fb0c7;
+font-size:12px;
+cursor:pointer
 }
 
 .bottom-nav span{
-    display:block;
-    font-size:20px;
-    margin-bottom:3px;
+display:block;
+font-size:20px;
+margin-bottom:3px
 }
 
 .bottom-nav button.active{
-    color:#61dafb;
+color:#61dafb
 }
 
 footer{
-    text-align:center;
-    color:#778ba5;
-    padding:25px;
+text-align:center;
+color:#778ba5;
+padding:25px
 }
 
 @media(max-width:500px){
-    .subjects{
-        grid-template-columns:1fr 1fr;
-    }
 
-    .welcome h1{
-        font-size:28px;
-    }
+.subjects{
+grid-template-columns:1fr 1fr
+}
+
+.welcome h1{
+font-size:27px
+}
+
+.question{
+font-size:18px
+}
 }
 </style>
 </head>
@@ -295,13 +331,10 @@ Learn<span>Mate</span> 📚
 </div>
 
 <div class="welcome">
-
-<h1>Learn something new today! 👋</h1>
-
+<h1>Learn. Practise. Improve. 🚀</h1>
 <p>
-Study lessons, practise questions and test your knowledge.
+Prepare for your exams with lessons and BECE-style practice.
 </p>
-
 </div>
 
 </header>
@@ -314,7 +347,7 @@ Study lessons, practise questions and test your knowledge.
 
 <div class="title">
 <h2>Choose a Subject 📚</h2>
-<p>Select a subject to start learning.</p>
+<p>Study a lesson or start a practice test.</p>
 </div>
 
 <div class="subjects">
@@ -328,7 +361,7 @@ Study lessons, practise questions and test your knowledge.
 <div class="subject" onclick="openSubject('english')">
 <div class="icon">📖</div>
 <h3>English</h3>
-<p>Grammar, vocabulary and comprehension.</p>
+<p>Grammar and vocabulary.</p>
 </div>
 
 <div class="subject" onclick="openSubject('science')">
@@ -352,14 +385,14 @@ Study lessons, practise questions and test your knowledge.
 </div>
 
 <div class="tip">
-Study for a short time every day instead of waiting until
-the last minute. Practise what you learn and review your mistakes.
+Read the lesson first, then practise questions.
+When you make a mistake, study the correct answer and try again.
 </div>
 
 </div>
 
 
-<!-- MATHEMATICS -->
+<!-- SUBJECT LESSONS -->
 
 <div id="math" class="lesson">
 
@@ -367,35 +400,23 @@ the last minute. Practise what you learn and review your mistakes.
 
 <div class="title">
 <h2>🧮 Mathematics</h2>
-<p>Basic Mathematics</p>
+<p>Quick lesson</p>
 </div>
 
 <div class="card">
-
 <h3>Fractions</h3>
-
 <p>
-A fraction represents part of a whole.
-For example, 1/2 means one part out of two equal parts.
+A fraction represents part of a whole. For example,
+1/2 means one part out of two equal parts.
 </p>
-
-<br>
-
-<p>
-To add fractions with the same denominator,
-add the numerators and keep the denominator.
-</p>
-
 </div>
 
-<button class="button" onclick="startQuiz('math')">
-Start Mathematics Quiz
+<button class="button practice" onclick="startQuiz('math')">
+📝 Start BECE Practice
 </button>
 
 </div>
 
-
-<!-- ENGLISH -->
 
 <div id="english" class="lesson">
 
@@ -403,35 +424,23 @@ Start Mathematics Quiz
 
 <div class="title">
 <h2>📖 English</h2>
-<p>Grammar and Vocabulary</p>
+<p>Quick lesson</p>
 </div>
 
 <div class="card">
-
 <h3>Synonyms</h3>
-
 <p>
 Synonyms are words that have similar meanings.
+For example, happy and joyful have similar meanings.
 </p>
-
-<br>
-
-<p>
-Example:
-<strong>Happy</strong> and <strong>Joyful</strong>
-have similar meanings.
-</p>
-
 </div>
 
-<button class="button" onclick="startQuiz('english')">
-Start English Quiz
+<button class="button practice" onclick="startQuiz('english')">
+📝 Start BECE Practice
 </button>
 
 </div>
 
-
-<!-- SCIENCE -->
 
 <div id="science" class="lesson">
 
@@ -439,34 +448,23 @@ Start English Quiz
 
 <div class="title">
 <h2>🔬 Science</h2>
-<p>Introduction to Science</p>
+<p>Quick lesson</p>
 </div>
 
 <div class="card">
-
 <h3>Living Things</h3>
-
 <p>
-Living things can grow, reproduce, respond to their environment
-and carry out life processes.
-</p>
-
-<br>
-
-<p>
+Living things can grow, reproduce and respond to their environment.
 Examples include humans, animals and plants.
 </p>
-
 </div>
 
-<button class="button" onclick="startQuiz('science')">
-Start Science Quiz
+<button class="button practice" onclick="startQuiz('science')">
+📝 Start BECE Practice
 </button>
 
 </div>
 
-
-<!-- ICT -->
 
 <div id="ict" class="lesson">
 
@@ -474,28 +472,19 @@ Start Science Quiz
 
 <div class="title">
 <h2>💻 ICT</h2>
-<p>Computer Basics</p>
+<p>Quick lesson</p>
 </div>
 
 <div class="card">
-
-<h3>What is a Computer?</h3>
-
+<h3>Computer Basics</h3>
 <p>
 A computer is an electronic device that receives data,
 processes it and produces information.
 </p>
-
-<br>
-
-<p>
-Examples include desktop computers, laptops and smartphones.
-</p>
-
 </div>
 
-<button class="button" onclick="startQuiz('ict')">
-Start ICT Quiz
+<button class="button practice" onclick="startQuiz('ict')">
+📝 Start BECE Practice
 </button>
 
 </div>
@@ -507,14 +496,18 @@ Start ICT Quiz
 
 <button class="back" onclick="goHome()">← Home</button>
 
-<div class="title">
+<div class="quiz-top">
 
-<h2 id="quizTitle">Quiz</h2>
+<h2 id="quizTitle">Practice</h2>
+
+<div class="timer">
+⏱️ <span id="timer">10:00</span>
+</div>
+
+</div>
 
 <div class="progress">
 <div id="progressBar" class="progress-bar"></div>
-</div>
-
 </div>
 
 <div class="card">
@@ -523,7 +516,11 @@ Start ICT Quiz
 
 <div id="options"></div>
 
-<button id="nextButton" class="button" onclick="nextQuestion()" style="display:none">
+<button
+id="nextButton"
+class="button"
+onclick="nextQuestion()"
+style="display:none">
 Next Question →
 </button>
 
@@ -532,25 +529,33 @@ Next Question →
 </div>
 
 
-<!-- SCORE -->
+<!-- RESULT -->
 
-<div id="result" class="quiz">
+<div id="result" class="result">
 
 <div class="card score">
 
-<h2>🎉 Quiz Complete!</h2>
+<h2>🏆 Practice Complete!</h2>
 
 <div id="scoreNumber" class="score-number">
-0/0
+0/20
 </div>
 
-<p id="scoreMessage"></p>
+<p id="percentage"></p>
+
+<p id="scoreMessage" class="result-message"></p>
+
+<button class="button" onclick="restartQuiz()">
+🔄 Try Again
+</button>
 
 <button class="button" onclick="goHome()">
-Back to Subjects
+📚 Back to Subjects
 </button>
 
 </div>
+
+<div id="review" class="review"></div>
 
 </div>
 
@@ -571,4 +576,749 @@ Learn today. Build tomorrow.
 Home
 </button>
 
-<button onclick="showSubjects
+<button onclick="goHome()">
+<span>📚</span>
+Subjects
+</button>
+
+<button onclick="showTip()">
+<span>💡</span>
+Tips
+</button>
+
+</div>
+
+
+<script>
+
+const questions={
+
+math:[
+{
+q:"What is 1/2 + 1/2?",
+options:["1","1/2","2","1/4"],
+answer:0
+},
+{
+q:"What is 5 × 2?",
+options:["7","10","12","15"],
+answer:1
+},
+{
+q:"What is 20 ÷ 4?",
+options:["4","5","6","8"],
+answer:1
+},
+{
+q:"What is 15 + 27?",
+options:["32","40","42","45"],
+answer:2
+},
+{
+q:"What is 100 - 35?",
+options:["55","65","75","85"],
+answer:1
+},
+{
+q:"What is 7 × 8?",
+options:["48","54","56","64"],
+answer:2
+},
+{
+q:"What is 81 ÷ 9?",
+options:["7","8","9","10"],
+answer:2
+},
+{
+q:"Which number is prime?",
+options:["9","15","17","21"],
+answer:2
+},
+{
+q:"What is 25% of 100?",
+options:["10","20","25","50"],
+answer:2
+},
+{
+q:"What is 3²?",
+options:["6","9","12","15"],
+answer:1
+},
+{
+q:"What is 2 + 3 × 4?",
+options:["20","14","24","10"],
+answer:1
+},
+{
+q:"What is the perimeter of a square with side 5 cm?",
+options:["10 cm","15 cm","20 cm","25 cm"],
+answer:2
+},
+{
+q:"What is 0.5 as a fraction?",
+options:["1/2","1/3","2/5","5/10 only"],
+answer:0
+},
+{
+q:"What is 12 × 12?",
+options:["124","134","144","154"],
+answer:2
+},
+{
+q:"What is 50 ÷ 5?",
+options:["5","10","15","20"],
+answer:1
+},
+{
+q:"Which is the largest?",
+options:["0.2","0.5","0.8","0.3"],
+answer:2
+},
+{
+q:"What is 10% of 200?",
+options:["10","20","30","40"],
+answer:1
+},
+{
+q:"How many degrees are in a right angle?",
+options:["45°","90°","180°","360°"],
+answer:1
+},
+{
+q:"What is 9 + 6?",
+options:["13","14","15","16"],
+answer:2
+},
+{
+q:"What is 1000 ÷ 10?",
+options:["10","50","100","1000"],
+answer:2
+}
+],
+
+english:[
+{
+q:"Which word is a synonym for 'happy'?",
+options:["Sad","Angry","Joyful","Tired"],
+answer:2
+},
+{
+q:"What is the opposite of 'hot'?",
+options:["Warm","Cold","Heat","Fire"],
+answer:1
+},
+{
+q:"Which word is a noun?",
+options:["Run","Beautiful","School","Quickly"],
+answer:2
+},
+{
+q:"Choose the correct sentence.",
+options:[
+"He go to school.",
+"He goes to school.",
+"He going school.",
+"He gone school."
+],
+answer:1
+},
+{
+q:"What is the plural of 'child'?",
+options:["Childs","Childes","Children","Childrens"],
+answer:2
+},
+{
+q:"Which word is an adjective?",
+options:["Beautiful","Run","Quickly","School"],
+answer:0
+},
+{
+q:"What is the opposite of 'early'?",
+options:["Fast","Late","Soon","Quick"],
+answer:1
+},
+{
+q:"Which is a verb?",
+options:["Jump","Blue","Chair","Happy"],
+answer:0
+},
+{
+q:"Choose the correct spelling.",
+options:["Beutiful","Beautiful","Beautifull","Butiful"],
+answer:1
+},
+{
+q:"What is the past tense of 'go'?",
+options:["Goed","Going","Went","Gone"],
+answer:2
+},
+{
+q:"Which punctuation ends a question?",
+options:[".","!",",","?"],
+answer:3
+},
+{
+q:"What is a synonym for 'big'?",
+options:["Small","Large","Short","Thin"],
+answer:1
+},
+{
+q:"Which word is an adverb?",
+options:["Quickly","Quick","Runner","Run"],
+answer:0
+},
+{
+q:"Choose the correct word: She ___ a book.",
+options:["have","has","having","had have"],
+answer:1
+},
+{
+q:"What is the opposite of 'strong'?",
+options:["Powerful","Weak","Hard","Brave"],
+answer:1
+},
+{
+q:"Which is a pronoun?",
+options:["Table","He","School","Beautiful"],
+answer:1
+},
+{
+q:"What is the plural of 'mouse'?",
+options:["Mouses","Mouse","Mice","Mices"],
+answer:2
+},
+{
+q:"Which sentence is in the future tense?",
+options:[
+"I ate.",
+"I eat.",
+"I will eat.",
+"I am eating."
+],
+answer:2
+},
+{
+q:"What is a synonym for 'begin'?",
+options:["End","Start","Stop","Finish"],
+answer:1
+},
+{
+q:"Which word is spelled correctly?",
+options:["Recieve","Receive","Receeve","Receve"],
+answer:1
+}
+],
+
+science:[
+{
+q:"Which of these is a living thing?",
+options:["Stone","Chair","Tree","Bottle"],
+answer:2
+},
+{
+q:"Which organ pumps blood around the body?",
+options:["Brain","Heart","Lung","Stomach"],
+answer:1
+},
+{
+q:"What gas do humans need to breathe?",
+options:["Oxygen","Carbon dioxide","Nitrogen only","Hydrogen"],
+answer:0
+},
+{
+q:"Which organ is mainly used for breathing?",
+options:["Heart","Lung","Kidney","Brain"],
+answer:1
+},
+{
+q:"What is the main source of energy for Earth?",
+options:["Moon","Sun","Wind only","Stars"],
+answer:1
+},
+{
+q:"Which is a solid?",
+options:["Water","Air","Stone","Steam"],
+answer:2
+},
+{
+q:"Plants make food through a process called?",
+options:["Digestion","Photosynthesis","Respiration","Evaporation"],
+answer:1
+},
+{
+q:"Which sense organ is used for seeing?",
+options:["Ear","Nose","Eye","Skin"],
+answer:2
+},
+{
+q:"Water changes into vapour through?",
+options:["Freezing","Melting","Evaporation","Condensation"],
+answer:2
+},
+{
+q:"Which is a renewable source of energy?",
+options:["Coal","Sunlight","Petrol","Natural gas"],
+answer:1
+},
+{
+q:"The human skeleton helps to?",
+options:[
+"Support the body",
+"Make food",
+"Pump blood",
+"Digest food"
+],
+answer:0
+},
+{
+q:"Which planet is known as the Red Planet?",
+options:["Earth","Mars","Venus","Jupiter"],
+answer:1
+},
+{
+q:"What do we use to measure temperature?",
+options:["Ruler","Thermometer","Balance","Clock"],
+answer:1
+},
+{
+q:"Which of these is a mammal?",
+options:["Fish","Frog","Dog","Lizard"],
+answer:2
+},
+{
+q:"What force pulls objects toward Earth?",
+options:["Friction","Gravity","Heat","Light"],
+answer:1
+},
+{
+q:"Which state of matter has a fixed shape?",
+options:["Solid","Liquid","Gas","Vapour"],
+answer:0
+},
+{
+q:"Which organ helps us think?",
+options:["Heart","Brain","Lung","Kidney"],
+answer:1
+},
+{
+q:"Which material is attracted by a magnet?",
+options:["Wood","Plastic","Iron","Glass"],
+answer:2
+},
+{
+q:"What is needed for a fire to burn?",
+options:["Oxygen","Ice","Sand only","Darkness"],
+answer:0
+},
+{
+q:"Which of these is a source of water?",
+options:["River","Stone","Plastic","Metal"],
+answer:0
+}
+],
+
+ict:[
+{
+q:"What does CPU stand for?",
+options:[
+"Central Processing Unit",
+"Computer Personal Unit",
+"Central Program Utility",
+"Computer Processing User"
+],
+answer:0
+},
+{
+q:"Which device is used to type?",
+options:["Monitor","Keyboard","Speaker","Printer"],
+answer:1
+},
+{
+q:"Which device displays information?",
+options:["Keyboard","Monitor","Mouse","Microphone"],
+answer:1
+},
+{
+q:"Which is used to move the pointer?",
+options:["Mouse","Printer","Speaker","Scanner"],
+answer:0
+},
+{
+q:"Which is an input device?",
+options:["Monitor","Printer","Keyboard","Speaker"],
+answer:2
+},
+{
+q:"Which is an output device?",
+options:["Keyboard","Mouse","Monitor","Scanner"],
+answer:2
+},
+{
+q:"What is used to store files?",
+options:["Storage device","Keyboard","Monitor","Speaker"],
+answer:0
+},
+{
+q:"Which one is a computer?",
+options:["Laptop","Chair","Book","Table"],
+answer:0
+},
+{
+q:"What does ICT mean?",
+options:[
+"Information and Communication Technology",
+"Internet Computer Technology",
+"Information Computer Tool",
+"Internal Communication Technology"
+],
+answer:0
+},
+{
+q:"Which device produces printed documents?",
+options:["Printer","Mouse","Keyboard","Monitor"],
+answer:0
+},
+{
+q:"Which is an example of software?",
+options:["Keyboard","Windows","Mouse","Monitor"],
+answer:1
+},
+{
+q:"Which is computer hardware?",
+options:["Microsoft Word","Keyboard","Windows","Browser"],
+answer:1
+},
+{
+q:"What is the internet?",
+options:[
+"A global network of computers",
+"A keyboard",
+"A printer",
+"A single computer"
+],
+answer:0
+},
+{
+q:"Which application is commonly used for browsing websites?",
+options:["Browser","Calculator","Camera","Gallery"],
+answer:0
+},
+{
+q:"Which device can take digital pictures?",
+options:["Camera","Printer","Keyboard","Speaker"],
+answer:0
+},
+{
+q:"Which key is commonly used to create a space?",
+options:["Enter","Shift","Spacebar","Escape"],
+answer:2
+},
+{
+q:"Which device is used to record sound?",
+options:["Microphone","Monitor","Printer","Mouse"],
+answer:0
+},
+{
+q:"What does USB commonly connect?",
+options:[
+"Electronic devices",
+"Food",
+"Books",
+"Clothes"
+],
+answer:0
+},
+{
+q:"Which is an example of an operating system?",
+options:["Android","Keyboard","Printer","Mouse"],
+answer:0
+},
+{
+q:"Which device can store information?",
+options:["Flash drive","Speaker","Monitor","Mouse"],
+answer:0
+}
+]
+
+};
+
+let currentSubject="";
+let currentQuestion=0;
+let score=0;
+let timer=600;
+let timerInterval;
+let wrongAnswers=[];
+
+function hideAll(){
+
+document.getElementById("home").style.display="none";
+
+document.querySelectorAll(".lesson").forEach(function(x){
+x.classList.remove("active");
+});
+
+document.getElementById("quiz").classList.remove("active");
+
+document.getElementById("result").classList.remove("active");
+
+}
+
+function goHome(){
+
+clearInterval(timerInterval);
+
+hideAll();
+
+document.getElementById("home").style.display="block";
+
+window.scrollTo(0,0);
+
+}
+
+function openSubject(subject){
+
+hideAll();
+
+document.getElementById(subject).classList.add("active");
+
+window.scrollTo(0,0);
+
+}
+
+function showTip(){
+
+goHome();
+
+document.querySelector(".tip").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+function startQuiz(subject){
+
+currentSubject=subject;
+
+currentQuestion=0;
+
+score=0;
+
+wrongAnswers=[];
+
+timer=600;
+
+hideAll();
+
+document.getElementById("quiz").classList.add("active");
+
+document.getElementById("quizTitle").textContent=
+subject.toUpperCase()+" BECE PRACTICE";
+
+startTimer();
+
+showQuestion();
+
+window.scrollTo(0,0);
+
+}
+
+function startTimer(){
+
+clearInterval(timerInterval);
+
+updateTimer();
+
+timerInterval=setInterval(function(){
+
+timer--;
+
+updateTimer();
+
+if(timer<=0){
+
+clearInterval(timerInterval);
+
+showResult();
+
+}
+
+},1000);
+
+}
+
+function updateTimer(){
+
+let minutes=Math.floor(timer/60);
+
+let seconds=timer%60;
+
+document.getElementById("timer").textContent=
+String(minutes).padStart(2,"0")+":"+
+String(seconds).padStart(2,"0");
+
+}
+
+function showQuestion(){
+
+let list=questions[currentSubject];
+
+let item=list[currentQuestion];
+
+document.getElementById("question").textContent=
+(currentQuestion+1)+". "+item.q;
+
+let options=document.getElementById("options");
+
+options.innerHTML="";
+
+item.options.forEach(function(option,index){
+
+let button=document.createElement("button");
+
+button.className="option";
+
+button.textContent=option;
+
+button.onclick=function(){
+chooseAnswer(index,button);
+};
+
+options.appendChild(button);
+
+});
+
+document.getElementById("nextButton").style.display="none";
+
+let progress=
+(currentQuestion/list.length)*100;
+
+document.getElementById("progressBar").style.width=
+progress+"%";
+
+}
+
+function chooseAnswer(index,button){
+
+let item=questions[currentSubject][currentQuestion];
+
+let all=document.querySelectorAll(".option");
+
+all.forEach(function(x){
+x.disabled=true;
+});
+
+if(index===item.answer){
+
+button.classList.add("correct");
+
+score++;
+
+}else{
+
+button.classList.add("wrong");
+
+all[item.answer].classList.add("correct");
+
+wrongAnswers.push({
+question:item.q,
+yourAnswer:item.options[index],
+correctAnswer:item.options[item.answer]
+});
+
+}
+
+document.getElementById("nextButton").style.display="block";
+
+}
+
+function nextQuestion(){
+
+currentQuestion++;
+
+let list=questions[currentSubject];
+
+if(currentQuestion>=list.length){
+
+showResult();
+
+}else{
+
+showQuestion();
+
+}
+
+}
+
+function showResult(){
+
+clearInterval(timerInterval);
+
+hideAll();
+
+document.getElementById("result").classList.add("active");
+
+let total=questions[currentSubject].length;
+
+let percentage=Math.round((score/total)*100);
+
+document.getElementById("scoreNumber").textContent=
+score+"/"+total;
+
+document.getElementById("percentage").textContent=
+"Percentage: "+percentage+"%";
+
+let message="Keep practising! 💪";
+
+if(percentage===100){
+message="Excellent! Perfect score! 🏆";
+}else if(percentage>=80){
+message="Excellent work! 🌟";
+}else if(percentage>=60){
+message="Good job! Keep improving! 👍";
+}else if(percentage>=40){
+message="Good attempt. Study more and try again! 📚";
+}else{
+message="Don't give up. Keep studying and practising! 💪";
+}
+
+document.getElementById("scoreMessage").textContent=
+message;
+
+let review=document.getElementById("review");
+
+review.innerHTML="<h3>❌ Review Your Mistakes</h3>";
+
+if(wrongAnswers.length===0){
+
+review.innerHTML+=
+"<div class='card'><p>Perfect! You got every question correct. 🏆</p></div>";
+
+}else{
+
+wrongAnswers.forEach(function(item,index){
+
+review.innerHTML+=
+"<div class='review-item'>"+
+"<strong>"+(index+1)+". "+item.question+"</strong><br><br>"+
+"Your answer: "+item.yourAnswer+
+"<br>Correct answer: <strong>"+item.correctAnswer+"</strong>"+
+"</div>";
+
+});
+
+}
+
+window.scrollTo(0,0);
+
+}
+
+function restartQuiz(){
+
+startQuiz(currentSubject);
+
+}
+
+</script>
+
+</body>
+    </html>
