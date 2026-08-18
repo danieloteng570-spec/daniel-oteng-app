@@ -1,0 +1,17 @@
+{
+  "name": "LearnMate",
+  "short_name": "LearnMate",
+  "description": "Learn, practise and improve.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "learnmate-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}Entertainment 
